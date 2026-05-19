@@ -1,6 +1,6 @@
 import pandas as pd
 
-DATA_PATH = "app/data/sanandaj_smart_grid_dataset_v2"
+DATA_PATH = "app/data/sanandaj_smart_grid_dataset_v2.csv"
 
 df = pd.read_csv(DATA_PATH)
 
