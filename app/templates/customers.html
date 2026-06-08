@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}
+Customers
+{% endblock %}
+
+{% block content %}
+
+<h1>Customers</h1>
+
+<br>
+
+<table class="customer-table">
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Region</th>
+            <th>Profile</th>
+            <th>Avg Consumption</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        {% for customer in customers %}
+
+        <tr>
+
+            <td>{{ customer.customer_id }}</td>
+
+            <td>{{ customer.region_id }}</td>
+
+            <td>{{ customer.customer_profile }}</td>
+
+            <td>
+                {{ "%.2f"|format(customer.consumption_kwh) }}
+            </td>
+
+            <td>
+                <a href="/customers/{{ customer.customer_id }}">
+                    View
+                </a>
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}
