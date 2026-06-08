@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("⚡ Smart City Smart Grid Dashboard")
+st.title("⚡ Smart City Dashboard")
 
 # -----------------------------
 # Average Consumption
