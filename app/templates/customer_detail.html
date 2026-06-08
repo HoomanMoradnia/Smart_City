@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+
+{% block title %}
+Customer Detail
+{% endblock %}
+
+{% block content %}
+
+<h1>
+    Customer {{ customer.customer_id }}
+</h1>
+
+<br>
+
+<div class="dashboard-grid">
+
+    <div class="card">
+
+        <h3>Region</h3>
+
+        <h2>
+            {{ customer.region_id }}
+        </h2>
+
+    </div>
+
+    <div class="card">
+
+        <h3>Profile</h3>
+
+        <h2>
+            {{ customer.profile }}
+        </h2>
+
+    </div>
+
+    <div class="card">
+
+        <h3>Average Usage</h3>
+
+        <h2>
+            {{ customer.avg_consumption }}
+        </h2>
+
+    </div>
+
+    <div class="card">
+
+        <h3>Maximum Usage</h3>
+
+        <h2>
+            {{ customer.max_consumption }}
+        </h2>
+
+    </div>
+
+</div>
+
+<br>
+
+<div class="card">
+
+    <h3>
+        Total Records
+    </h3>
+
+<br>
+
+<div class="card">
+
+    <h3>
+        Consumption History
+    </h3>
+
+    <br>
+
+    <canvas id="consumptionChart">
+
+    </canvas>
+
+</div>
+
+    <p>
+
+        {{ customer.records }}
+
+        hourly records available.
+
+    </p>
+
+</div>
+
+<br>
+
+<div class="dashboard-grid">
+
+    <div class="card">
+
+        <h3>
+            Monthly Usage
+        </h3>
+
+        <h2>
+            {{ bill.monthly_usage }}
+            kWh
+        </h2>
+
+    </div>
+
+    <div class="card">
+
+        <h3>
+            Current Tariff
+        </h3>
+
+        <h2>
+            {{ bill.tariff }}
+        </h2>
+
+    </div>
+
+    <div class="card">
+
+        <h3>
+            Estimated Cost
+        </h3>
+
+        <h2>
+            {{ bill.estimated_cost }}
+            Rial
+        </h2>
+
+    </div>
+
+</div>
+
+<br>
+
+<div class="card">
+
+    <h3>
+        Forecast
+    </h3>
+
+    <p>
+
+        Predicted Monthly Usage:
+
+        <strong>
+
+            {{ predicted_usage }}
+
+            kWh
+
+        </strong>
+
+    </p>
+
+    <br>
+
+    <p>
+
+        {{ alert }}
+
+    </p>
+
+</div>
+
+{% endblock %}
+
+<script>
+
+const labels =
+{{ chart_data.labels | tojson }}
+
+const values =
+{{ chart_data.values | tojson }}
+
+new Chart(
+
+    document.getElementById(
+        "consumptionChart"
+    ),
+
+    {
+
+        type: "line",
+
+        data: {
+
+            labels: labels,
+
+            datasets: [
+
+                {
+
+                    label:
+                        "Consumption (kWh)",
+
+                    data: values,
+
+                    tension: 0.3
+
+                }
+
+            ]
+        }
+    }
+
+)
+
+</script>
