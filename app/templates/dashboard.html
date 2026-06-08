@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+<h1>Smart Grid Dashboard</h1>
+
+<br>
+
+<div class="dashboard-grid">
+
+    <div class="card">
+        <h3>Total Customers</h3>
+        <h2>{{ stats.customers }}</h2>
+    </div>
+
+    <div class="card">
+        <h3>Regions</h3>
+        <h2>{{ stats.regions }}</h2>
+    </div>
+
+    <div class="card">
+        <h3>Average Consumption</h3>
+        <h2>{{ stats.average_consumption }}</h2>
+    </div>
+
+    <div class="card">
+        <h3>Max Consumption</h3>
+        <h2>{{ stats.max_consumption }}</h2>
+    </div>
+
+</div>
+
+{% endblock %}
