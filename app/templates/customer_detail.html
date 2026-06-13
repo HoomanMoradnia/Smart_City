@@ -134,17 +134,33 @@ Customer Detail
 
 </div>
 
-<br>
-
 <div class="card">
 
     <h3>
-        Forecast
+        Forecast Analysis
     </h3>
+
+    <br>
 
     <p>
 
-        Predicted Monthly Usage:
+        Current Usage:
+
+        <strong>
+
+            {{ bill.monthly_usage }}
+
+            kWh
+
+        </strong>
+
+    </p>
+
+    <br>
+
+    <p>
+
+        Predicted Usage:
 
         <strong>
 
@@ -163,6 +179,68 @@ Customer Detail
         {{ alert }}
 
     </p>
+
+</div>
+
+<br>
+
+<div class="card">
+
+    <h3>
+        Billing Breakdown
+    </h3>
+
+    <br>
+
+    <table class="customer-table">
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    Consumption
+                </th>
+
+                <th>
+                    Tariff
+                </th>
+
+                <th>
+                    Cost
+                </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for row in bill.breakdown %}
+
+            <tr>
+
+                <td>
+                    {{ row.consumption }}
+                    kWh
+                </td>
+
+                <td>
+                    {{ row.tariff }}
+                </td>
+
+                <td>
+                    {{ row.cost }}
+                    Rial
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
 
 </div>
 
