@@ -82,3 +82,18 @@ body{
 .customer-table tr:nth-child(even){
     background:#f8fafc;
 }
+
+.alert-normal{
+    color:green;
+    font-weight:bold;
+}
+
+.alert-warning{
+    color:orange;
+    font-weight:bold;
+}
+
+.alert-critical{
+    color:red;
+    font-weight:bold;
+}
