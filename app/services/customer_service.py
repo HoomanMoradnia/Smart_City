@@ -22,43 +22,24 @@ def get_customers():
 
 def get_customer_details(customer_id: int):
 
-    customer_df = df[
-        df["customer_id"] == customer_id
-    ]
+    customer_df = df[df["customer_id"] == customer_id]
 
     if customer_df.empty:
         return None
 
     return {
         "customer_id": customer_id,
-        "region_id":
-            customer_df["region_id"].iloc[0],
-
-        "profile":
-            customer_df["customer_profile"].iloc[0],
-
-        "avg_consumption":
-            round(
-                customer_df["consumption_kwh"].mean(),
-                2
-            ),
-
-        "max_consumption":
-            round(
-                customer_df["consumption_kwh"].max(),
-                2
-            ),
-
-        "records":
-            len(customer_df)
+        "region_id": customer_df["region_id"].iloc[0],
+        "profile":customer_df["customer_profile"].iloc[0],
+        "avg_consumption":round(customer_df["consumption_kwh"].mean(), 2),
+        "max_consumption":round(customer_df["consumption_kwh"].max(), 2),
+        "records":len(customer_df)
     }
 
 
 def get_customer_chart_data(customer_id: int):
 
-    customer_df = df[
-        df["customer_id"] == customer_id
-    ].copy()
+    customer_df = df[df["customer_id"] == customer_id].copy()
 
     if customer_df.empty:
         return None
@@ -66,9 +47,6 @@ def get_customer_chart_data(customer_id: int):
     chart_df = customer_df.tail(168)
 
     return {
-        "labels":
-            chart_df["datetime"].tolist(),
-
-        "values":
-            chart_df["consumption_kwh"].tolist()
+        "labels": chart_df["datetime"].tolist(),
+        "values": chart_df["consumption_kwh"].tolist()
     }
