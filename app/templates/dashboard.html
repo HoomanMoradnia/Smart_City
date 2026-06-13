@@ -34,4 +34,159 @@ Dashboard
 
 </div>
 
+<br>
+
+<div class="dashboard-grid">
+
+    <div class="card">
+
+        <h3>
+            Region Consumption
+        </h3>
+
+        <canvas
+            id="regionChart">
+        </canvas>
+
+    </div>
+
+    <div class="card">
+
+        <h3>
+            Hourly Consumption
+        </h3>
+
+        <canvas
+            id="hourlyChart">
+        </canvas>
+
+    </div>
+
+</div>
+
+<br>
+
+<div class="dashboard-grid">
+
+    <div class="card">
+
+        <h3>
+            Top Consumers
+        </h3>
+
+        <ul>
+
+        {% for customer_id, value
+            in top_users.items()
+        %}
+
+            <li>
+
+                Customer
+                {{ customer_id }}
+
+                :
+                {{ value|round(2) }}
+
+                kWh
+
+            </li>
+
+        {% endfor %}
+
+        </ul>
+
+    </div>
+
+        <div class="card">
+
+        <h3>
+            Alert Statistics
+        </h3>
+
+        <ul>
+
+        {% for key, value in alerts.items()%}
+
+            <li>
+
+                {{ key }}
+
+                :
+
+                {{ value }}
+
+            </li>
+
+        {% endfor %}
+
+        </ul>
+
+    </div>
+
+</div>
+
 {% endblock %}
+
+<script>
+
+const regionLabels = {{ regions.labels | tojson }}
+
+const regionValues = {{ regions.values | tojson }}
+
+new Chart(
+
+document.getElementById("regionChart"),
+
+{
+    type:"bar",
+
+    data:{
+
+        labels:regionLabels,
+
+        datasets:[{
+
+            label:
+            "Consumption",
+
+            data:
+            regionValues
+
+        }]
+    }
+}
+)
+
+const hourlyLabels = {{ hourly.labels | tojson }}
+
+const hourlyValues = {{ hourly.values | tojson }}
+
+new Chart(
+
+document.getElementById("hourlyChart"),
+
+{
+    type:"line",
+
+    data:{
+
+        labels:
+        hourlyLabels,
+
+        datasets:[{
+
+            label:
+            "Hourly Usage",
+
+            data:
+            hourlyValues,
+
+            tension:0.3
+
+        }]
+    }
+}
+)
+
+</script>
