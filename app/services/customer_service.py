@@ -5,10 +5,9 @@ DATA_PATH = "app/data/sanandaj_smart_grid_dataset_v2.csv"
 df = pd.read_csv(DATA_PATH)
 
 
-def get_customers():
+def get_customers(search=None, region=None, profile=None):
 
-    customers = (
-        df.groupby("customer_id")
+    customers = (df.groupby("customer_id")
         .agg({
             "region_id": "first",
             "customer_profile": "first",
@@ -16,6 +15,15 @@ def get_customers():
         })
         .reset_index()
     )
+
+    if search:
+        customers = customers[customers["customer_id"].astype(str).str.contains(str(search), case=False)]
+
+    if region:
+        customers = customers[customers["region_id"] == region]
+
+    if profile:
+        customers = customers[customers["customer_profile"].str.lower() == profile.lower()]
 
     return customers.to_dict(orient="records")
 
