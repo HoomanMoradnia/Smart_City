@@ -97,3 +97,33 @@ body{
     color:red;
     font-weight:bold;
 }
+
+form{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+input,
+select{
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+button{
+    padding:10px 20px;
+    cursor:pointer;
+}
+
+.reset-btn{
+    padding:10px 20px;
+    background:#ddd;
+    text-decoration:none;
+    border-radius:5px;
+    color:black;
+}
+
+.reset-btn:hover{
+    background:#cfcfcf;
+}
