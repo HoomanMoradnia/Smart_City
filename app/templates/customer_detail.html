@@ -246,13 +246,12 @@ Customer Detail
 
 {% endblock %}
 
+{% block scripts %}
+
 <script>
 
-const labels =
-{{ chart_data.labels | tojson }}
-
-const values =
-{{ chart_data.values | tojson }}
+const labels ={{ chart_data["labels"] | tojson }}
+const values ={{ chart_data["values"] | tojson }}
 
 new Chart(
 
@@ -288,3 +287,5 @@ new Chart(
 )
 
 </script>
+
+{% endblock %}
