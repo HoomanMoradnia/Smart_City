@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, Query
 from fastapi.templating import Jinja2Templates
 from app.services.dashboard_service import (
     dashboard_stats,
@@ -17,6 +17,7 @@ from app.services.pricing_service import (
     predict_month_end_usage,
     advanced_tariff_alert
 )
+
 
 router = APIRouter()
 
@@ -50,15 +51,18 @@ def dashboard(request: Request):
 
 
 @router.get("/customers")
-def customers(request: Request):
+def customers(request: Request, search: str = None, region: str = None, profile: str = None):
 
-    customers_data = get_customers()
+    customers_data = get_customers(search=search, region=region, profile=profile)
 
     return templates.TemplateResponse(
         request=request,
         name="customers.html",
         context={
-            "customers": customers_data
+            "customers": customers_data,
+            "search": search,
+            "region": region,
+            "profile": profile
         }
     )
 
