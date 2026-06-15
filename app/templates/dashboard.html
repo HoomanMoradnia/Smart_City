@@ -128,65 +128,45 @@ Dashboard
 
 {% endblock %}
 
+{% block scripts %}
+
 <script>
 
-const regionLabels = {{ regions.labels | tojson }}
-
-const regionValues = {{ regions.values | tojson }}
-
-new Chart(
-
-document.getElementById("regionChart"),
-
-{
-    type:"bar",
-
-    data:{
-
-        labels:regionLabels,
-
-        datasets:[{
-
-            label:
-            "Consumption",
-
-            data:
-            regionValues
-
-        }]
-    }
-}
-)
-
-const hourlyLabels = {{ hourly.labels | tojson }}
-
-const hourlyValues = {{ hourly.values | tojson }}
+const regionLabels = {{ regions["labels"] | tojson }};
+const regionValues = {{ regions["values"] | tojson }};
 
 new Chart(
-
-document.getElementById("hourlyChart"),
-
-{
-    type:"line",
-
-    data:{
-
-        labels:
-        hourlyLabels,
-
-        datasets:[{
-
-            label:
-            "Hourly Usage",
-
-            data:
-            hourlyValues,
-
-            tension:0.3
-
-        }]
+    document.getElementById("regionChart"),
+    {
+        type: "bar",
+        data: {
+            labels: regionLabels,
+            datasets: [{
+                label: "Region Consumption",
+                data: regionValues
+            }]
+        }
     }
-}
-)
+);
+
+const hourlyLabels = {{ hourly["labels"] | tojson }};
+const hourlyValues = {{ hourly["values"] | tojson }};
+
+new Chart(
+    document.getElementById("hourlyChart"),
+    {
+        type: "line",
+        data: {
+            labels: hourlyLabels,
+            datasets: [{
+                label: "Hourly Consumption",
+                data: hourlyValues,
+                tension: 0.3
+            }]
+        }
+    }
+);
 
 </script>
+
+{% endblock %}
