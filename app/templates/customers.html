@@ -8,6 +8,81 @@ Customers
 
 <h1>Customers</h1>
 
+<form method="get">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Customer ID"
+        value="{{ search if search else '' }}"
+    >
+
+    <select name="region">
+
+        <option value="">
+            All Regions
+        </option>
+
+        <option value="R1"
+            {% if region == "R1" %}selected{% endif %}>
+            Region 1
+        </option>
+
+        <option value="R2"
+            {% if region == "R2" %}selected{% endif %}>
+            Region 2
+        </option>
+
+        <option value="R3"
+            {% if region == "R3" %}selected{% endif %}>
+            Region 3
+        </option>
+
+        <option value="R4"
+            {% if region == "R4" %}selected{% endif %}>
+            Region 4
+        </option>
+
+        <option value="R5"
+            {% if region == "R5" %}selected{% endif %}>
+            Region 5
+        </option>
+
+    </select>
+
+    <select name="profile">
+
+        <option value="">
+            All Profiles
+        </option>
+
+        <option value="low"
+            {% if profile == "low" %}selected{% endif %}>
+            Low
+        </option>
+
+        <option value="normal"
+            {% if profile == "normal" %}selected{% endif %}>
+            Normal
+        </option>
+
+        <option value="high"
+            {% if profile == "high" %}selected{% endif %}>
+            High
+        </option>
+
+    </select>
+
+    <button type="submit">
+        Search
+    </button>
+
+    <a href="/customers" class="reset-btn">
+        Reset
+    </a>
+
+</form>
+
 <br>
 
 <table class="customer-table">
